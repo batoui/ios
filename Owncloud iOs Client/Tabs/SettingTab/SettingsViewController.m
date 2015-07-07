@@ -40,6 +40,9 @@
 #import "ManageCookiesStorageDB.h"
 #import "Accessibility.h"
 
+#include <AddressBook/AddressBook.h>
+#import "ImportContactsSourceViewController.h"
+
 //Settings table view size separator
 #define k_padding_normal_section 20.0
 #define k_padding_under_section 5.0
@@ -263,14 +266,7 @@
 // Asks the data source to return the number of sections in the table view.
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     
-    NSInteger sections = 0;
-    
-    if (k_multiaccount_available) {
-        sections = 5;
-     } else {
-        sections = 4;
-     }
-    return sections;
+    return 5;
 }
 
 // Returns the table view managed by the controller object.
@@ -280,12 +276,7 @@
     
     switch (section) {
         case 0:
-            
-            if (k_multiaccount_available) {
-                n = self.listUsers.count;
-            }else{
-                n = 1;
-            }
+            n = self.listUsers.count;
             break;
             
         case 1:
@@ -293,47 +284,15 @@
             break;
             
         case 2:
-            n = 1;
+            n = 2;
             break;
             
         case 3:
-            
-            if (k_multiaccount_available) {
-               n = 1;
-            }else{
-                if (k_show_help_option_on_settings) {
-                    n = n + 1;
-                }
-                if (k_show_recommend_option_on_settings) {
-                    n = n + 1;
-                }
-                if (k_show_feedback_option_on_settings) {
-                    n = n + 1;
-                }
-                if (k_show_imprint_option_on_settings) {
-                    n = n + 1;
-                }
-            }
-
+            n = 1;
             break;
             
         case 4:
-            n = 0;
-            if (k_multiaccount_available) {
-               
-                if (k_show_help_option_on_settings) {
-                    n = n + 1;
-                }
-                if (k_show_recommend_option_on_settings) {
-                    n = n + 1;
-                }
-                if (k_show_feedback_option_on_settings) {
-                    n = n + 1;
-                }
-                if (k_show_imprint_option_on_settings) {
-                    n = n + 1;
-                }
-            }
+            n = 1;
             break;
             
         default:
@@ -355,44 +314,31 @@
     
     switch (indexPath.section) {
         case 0:
-            if (k_multiaccount_available) {
-                cell = [self getSectionManageAccountBlock:cell byRow:indexPath.row];
-            }else{
-                cell = [self getSectionDisconnectButton:cell byRow:indexPath.row];
-            }
+            cell = [self getSectionManageAccountBlock:cell byRow:indexPath.row];
             break;
             
         case 1:
-            if (k_multiaccount_available) {
-               cell = [self getSectionAddAccountButton:cell byRow:indexPath.row];
-            }else{
-                [self getSectionAppPinBlock:cell byRow:indexPath.row];
-            }
+            cell = [self getSectionAddAccountButton:cell byRow:indexPath.row];
             break;
             
         case 2:
-            if (k_multiaccount_available) {
-                [self getSectionAppPinBlock:cell byRow:indexPath.row];
-            }else{
-                [self getSectionAppInstantUpload:cell byRow:indexPath.row];
+            [self getSectionInfoBlock:cell byRow:indexPath.row];
+            cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+            if(indexPath.row == 0) {
+                cell.textLabel.text = NSLocalizedString(@"configure_contact_synch", nil);
             }
+            else {
+                cell.textLabel.text = NSLocalizedString(@"import_contacts", nil);
+            }
+            [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
             break;
             
         case 3:
-            if (k_multiaccount_available) {
-                [self getSectionAppInstantUpload:cell byRow:indexPath.row];
-            }else{
-                [self getSectionInfoBlock:cell byRow:indexPath.row];
-            }
+            [self getSectionAppPinBlock:cell byRow:indexPath.row];
             break;
             
         case 4:
-            if (k_multiaccount_available) {
-                [self getSectionInfoBlock:cell byRow:indexPath.row];
-            }else{
-                //Nothing
-            }
-            
+            [self getSectionAppInstantUpload:cell byRow:indexPath.row];
             break;
             
         default:
@@ -409,10 +355,10 @@
     UILabel *label = [[UILabel alloc] init];
     UIFont *appFont = [UIFont fontWithName:@"HelveticaNeue" size:13];
     
-    NSInteger sectionToShowFooter = 3;
+    NSInteger sectionToShowFooter = 3 + 1;
     
     if (k_multiaccount_available) {
-        sectionToShowFooter = 4;
+        sectionToShowFooter = 4 + 1;
     }
 
     if (section == sectionToShowFooter) {
@@ -427,7 +373,7 @@
         label.backgroundColor = [UIColor clearColor];
         label.text = @"";
     }
-    return label;
+    return nil;
 }
 
 
@@ -441,11 +387,7 @@
             break;
             
         case 1:
-            if (k_multiaccount_available) {
-                height = k_padding_under_section;
-            }else{
-                height = k_padding_normal_section;
-            }
+            height = k_padding_under_section;
             break;
             
         default:
@@ -462,11 +404,7 @@
     
     switch (section) {
         case 0:
-            if (k_multiaccount_available) {
-                height = k_padding_under_section;
-            }else{
-                height = k_padding_normal_section;
-            }
+            height = k_padding_under_section;
             break;
             
         default:
@@ -487,38 +425,19 @@
             break;
             
         case 1:
-            
-            if (!k_multiaccount_available) {
-                title = NSLocalizedString(@"security_section", nil);
-            }
-            
+            title = @"";
             break;
             
         case 2:
-            
-            if (k_multiaccount_available) {
-                title = NSLocalizedString(@"security_section", nil);
-            }else{
-                title = NSLocalizedString(@"instant_updloads_section", nil);
-            }
-            
+            title = NSLocalizedString(@"contact_section", @"Contact");
             break;
             
         case 3:
-            
-            if (k_multiaccount_available) {
-                title = NSLocalizedString(@"instant_updloads_section", nil);
-            }else{
-                title = NSLocalizedString(@"more_section", nil);
-            }
-            
+            title = NSLocalizedString(@"security_section", nil);
             break;
             
         case 4:
-            if (k_multiaccount_available) {
-                title = NSLocalizedString(@"more_section", nil);
-            }
-    
+            title = NSLocalizedString(@"instant_updloads_section", nil);
             break;
             
         default:
@@ -844,28 +763,21 @@
     
     switch (indexPath.section) {
         case 0:
-            if (k_multiaccount_available) {
-                [self didPressOnAccountIndexPath:indexPath];
-            }else{
-                [self disconnectUser];
-            }
+            [self didPressOnAccountIndexPath:indexPath];
             break;
             
         case 1:
-            if (k_multiaccount_available) {
-                [self didPressOnAddAccountButton];
-            }
+            [self didPressOnAddAccountButton];
             break;
             
-        case 3:
-            if (!k_multiaccount_available) {
-                [self didPressOnInfoBlock:indexPath.row];
+        case 2:
+            if(indexPath.row == 0) {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Contacts" message:@"Configure" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                [alert show];
             }
-            break;
-            
-        case 4:
-            if (k_multiaccount_available) {
-                [self didPressOnInfoBlock:indexPath.row];
+            if(indexPath.row == 1) {
+                
+                [self importContactsCheckABAuthorisation];
             }
             break;
             
@@ -1882,6 +1794,134 @@
             [self setPropertiesInstantUploadToState:NO];
         }
     }
+}
+
+#pragma mark - AB Methods
+
+-(void) importContactsCheckABAuthorisation {
+    
+    if (ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusNotDetermined) {
+        
+        ABAddressBookRef iPhoneAddressBook = [self getABAddressBookRef];
+        ABAddressBookRequestAccessWithCompletion(iPhoneAddressBook, ^(bool granted, CFErrorRef error) {
+            
+            if (granted) {
+                NSLog(@"First AB access granted");
+                
+                [self importContactsCheckCardDavAccountConfiguredInAddressBook:iPhoneAddressBook];
+                CFRelease(iPhoneAddressBook);
+            }
+            else {
+                NSLog(@"First AB access denied");
+                
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Contacts"
+                                                                message:NSLocalizedString(@"authorise_contacts", nil)
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"OK"
+                                                      otherButtonTitles:nil, nil];
+                [alert show];
+                
+                return ;
+            }
+        });
+    }
+    else if (ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusAuthorized) {
+        NSLog(@"Access granted, add the contact");
+        
+        ABAddressBookRef iPhoneAddressBook = [self getABAddressBookRef];
+        [self importContactsCheckCardDavAccountConfiguredInAddressBook:iPhoneAddressBook];
+        CFRelease(iPhoneAddressBook);
+    }
+    else {
+        // Send an alert telling user to change privacy setting in settings app
+        NSLog(@"AB Access already denied");
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Contacts"
+                                                        message:NSLocalizedString(@"authorise_contacts", nil)
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil, nil];
+        [alert show];
+        
+        return ;
+    }
+
+}
+
+-(ABAddressBookRef) getABAddressBookRef {
+    
+    CFErrorRef error = NULL;
+    ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, &error);
+    
+    if (error != NULL) {
+        
+        CFStringRef errorDesc = CFErrorCopyDescription(error);
+        NSLog(@"iPhoneAddressBook not created: %@", errorDesc);
+        CFRelease(errorDesc);
+        
+        return NULL;
+    }
+    
+    // TO released later, if not a leak :)
+    return addressBook;
+}
+
+-(void) importContactsCheckCardDavAccountConfiguredInAddressBook:(ABAddressBookRef)addressBook {
+
+    BOOL doCardDavAccountExists = NO;
+    NSMutableArray *sourceArray = [NSMutableArray arrayWithCapacity:10];
+    
+    CFArrayRef sources = ABAddressBookCopyArrayOfAllSources (addressBook);
+    CFIndex countSources = CFArrayGetCount(sources);
+    
+    for(CFIndex idx=0; idx < countSources; ++idx) {
+        
+        ABRecordRef source = CFArrayGetValueAtIndex(sources, idx);
+        
+        NSString *name = (NSString *)CFBridgingRelease(ABRecordCopyValue(source, kABSourceNameProperty));
+        if(name == nil || name.length == 0) {
+            
+            name = @"Local";
+        }
+        NSNumber *type = (NSNumber *)CFBridgingRelease(ABRecordCopyValue(source, kABSourceTypeProperty));
+        NSLog(@"Source found of name=%@ and type=%@", name, type);
+        
+        NSArray *aSource = [NSArray arrayWithObjects:type, name, nil];
+        [sourceArray addObject:aSource];
+        
+        // Found a CardDAV source
+        // RAF check that this is our CardDAV source
+        if([type intValue] == kABSourceTypeCardDAV) {
+            NSLog(@"Found CardDAV source");
+            
+            doCardDavAccountExists = YES;
+        }
+        
+    }
+    
+    NSLog(@"%@",sourceArray);
+    
+    if(!doCardDavAccountExists) {
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Contacts"
+                                                        message:NSLocalizedString(@"no_carddav_account", nil)
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil, nil];
+        [alert show];
+        
+        CFRelease(sources);
+        return;
+    }
+    
+    ImportContactsSourceViewController *importContactsSourceViewController = [[ImportContactsSourceViewController alloc] initWithNibName:@"ImportContactsSourceViewController" bundle:nil];
+    importContactsSourceViewController.sources = sourceArray;
+    
+    [self.navigationController pushViewController:importContactsSourceViewController animated:YES];
+    
+    CFRelease(sources);
+    
+    
 }
 
 @end

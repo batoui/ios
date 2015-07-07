@@ -546,6 +546,11 @@
 		59E58B751B04ED15004E9739 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 13824C0816034C2200A95EAD /* libcrypto.a */; };
 		59E58B761B04ED15004E9739 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 13824C0916034C2200A95EAD /* libssl.a */; };
 		59E58B771B04ED20004E9739 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAC3AC3F15ED2B4E00B59805 /* MobileCoreServices.framework */; };
+		9C16AE9B1B4A0EF900B068A3 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C16AE9A1B4A0EF900B068A3 /* AddressBook.framework */; };
+		9C16AEA81B4A960200B068A3 /* ImportContactsSourceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C16AEA51B4A960200B068A3 /* ImportContactsSourceViewController.xib */; };
+		9C16AEA91B4A960200B068A3 /* ImportContactsSourceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C16AEA61B4A960200B068A3 /* ImportContactsSourceViewController.m */; };
+		9CCC9A061B4B53C9005383B8 /* ImportContactsDstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CCC9A041B4B53C9005383B8 /* ImportContactsDstViewController.m */; };
+		9CCC9A071B4B53C9005383B8 /* ImportContactsDstViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CCC9A051B4B53C9005383B8 /* ImportContactsDstViewController.xib */; };
 		EA1415A61AB1B89E0083EACE /* OCToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = EA42FA4D1804217D0006DB7C /* OCToolBar.m */; };
 		EA1787AC17E33BB9005171AB /* OCNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1787AB17E33BB9005171AB /* OCNavigationController.m */; };
 		EA1F62CD1A5EBC2100D6346F /* UtilsUrls.m in Sources */ = {isa = PBXBuildFile; fileRef = 593F7CA919EFDE96004136F7 /* UtilsUrls.m */; };
@@ -1405,6 +1410,13 @@
 		59E48E931B3AAE72008FAAE0 /* th-TH */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "th-TH"; path = "th-TH.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		59E48E941B3AAE87008FAAE0 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		59E52E7F1B0B666100F5B1B3 /* Accessibility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Accessibility.h; path = SupportingFiles/Accessibility/Accessibility.h; sourceTree = "<group>"; };
+		9C16AE9A1B4A0EF900B068A3 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		9C16AEA51B4A960200B068A3 /* ImportContactsSourceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ImportContactsSourceViewController.xib; path = Tabs/SettingTab/ImportContactsSourceViewController/ImportContactsSourceViewController.xib; sourceTree = "<group>"; };
+		9C16AEA61B4A960200B068A3 /* ImportContactsSourceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImportContactsSourceViewController.m; path = Tabs/SettingTab/ImportContactsSourceViewController/ImportContactsSourceViewController.m; sourceTree = "<group>"; };
+		9C16AEA71B4A960200B068A3 /* ImportContactsSourceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImportContactsSourceViewController.h; path = Tabs/SettingTab/ImportContactsSourceViewController/ImportContactsSourceViewController.h; sourceTree = "<group>"; };
+		9CCC9A031B4B53C9005383B8 /* ImportContactsDstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImportContactsDstViewController.h; path = Tabs/SettingTab/ImportContactsDstViewController/ImportContactsDstViewController.h; sourceTree = "<group>"; };
+		9CCC9A041B4B53C9005383B8 /* ImportContactsDstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImportContactsDstViewController.m; path = Tabs/SettingTab/ImportContactsDstViewController/ImportContactsDstViewController.m; sourceTree = "<group>"; };
+		9CCC9A051B4B53C9005383B8 /* ImportContactsDstViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ImportContactsDstViewController.xib; path = Tabs/SettingTab/ImportContactsDstViewController/ImportContactsDstViewController.xib; sourceTree = "<group>"; };
 		EA1787AA17E33BB9005171AB /* OCNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OCNavigationController.h; path = Tabs/FileTab/OCNavigationController.h; sourceTree = "<group>"; };
 		EA1787AB17E33BB9005171AB /* OCNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OCNavigationController.m; path = Tabs/FileTab/OCNavigationController.m; sourceTree = "<group>"; };
 		EA2678FB1876E4B8008678DE /* notSharedItem.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notSharedItem.png; sourceTree = "<group>"; };
@@ -1522,6 +1534,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C16AE9B1B4A0EF900B068A3 /* AddressBook.framework in Frameworks */,
 				59C71D281A921A5100F66166 /* ImageIO.framework in Frameworks */,
 				404FDA241A36E5E5008AB4E1 /* CoreLocation.framework in Frameworks */,
 				EA8667E918AA299000D3550D /* libownCloudiOS.a in Frameworks */,
@@ -1634,6 +1647,7 @@
 		1324297B15ADBB3700DF823E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9C16AE9A1B4A0EF900B068A3 /* AddressBook.framework */,
 				59C71D271A921A5100F66166 /* ImageIO.framework */,
 				404FDA231A36E5E5008AB4E1 /* CoreLocation.framework */,
 				EA68969217F59A090033B3C1 /* AudioToolbox.framework */,
@@ -1753,6 +1767,8 @@
 		132429C815ADC62200DF823E /* Settings Tab */ = {
 			isa = PBXGroup;
 			children = (
+				9CCC9A021B4B53BB005383B8 /* ImportContactsDstViewController */,
+				9C16AEA41B4A95E700B068A3 /* ImportContactSource */,
 				148DD6E217786A1400FB9977 /* SettingsViewController.h */,
 				148DD6E317786A1400FB9977 /* SettingsViewController.m */,
 				148DD6E417786A1400FB9977 /* SettingsViewController.xib */,
@@ -2734,6 +2750,26 @@
 			name = Files;
 			sourceTree = "<group>";
 		};
+		9C16AEA41B4A95E700B068A3 /* ImportContactSource */ = {
+			isa = PBXGroup;
+			children = (
+				9C16AEA71B4A960200B068A3 /* ImportContactsSourceViewController.h */,
+				9C16AEA61B4A960200B068A3 /* ImportContactsSourceViewController.m */,
+				9C16AEA51B4A960200B068A3 /* ImportContactsSourceViewController.xib */,
+			);
+			name = ImportContactSource;
+			sourceTree = "<group>";
+		};
+		9CCC9A021B4B53BB005383B8 /* ImportContactsDstViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9CCC9A031B4B53C9005383B8 /* ImportContactsDstViewController.h */,
+				9CCC9A041B4B53C9005383B8 /* ImportContactsDstViewController.m */,
+				9CCC9A051B4B53C9005383B8 /* ImportContactsDstViewController.xib */,
+			);
+			name = ImportContactsDstViewController;
+			sourceTree = "<group>";
+		};
 		A9267F1815D04C1B004D4403 /* Recent Tab */ = {
 			isa = PBXGroup;
 			children = (
@@ -3211,7 +3247,7 @@
 				LastUpgradeCheck = 0610;
 				TargetAttributes = {
 					1324297715ADBB3700DF823E = {
-						DevelopmentTeam = 9B5WD74GWJ;
+						DevelopmentTeam = 7MA98J2NRQ;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -3223,7 +3259,7 @@
 					};
 					EA6606941AA767F700BA2C65 = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = 9B5WD74GWJ;
+						DevelopmentTeam = 7MA98J2NRQ;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -3235,7 +3271,7 @@
 					};
 					EAB0AB3119ED356A00764C31 = {
 						CreatedOnToolsVersion = 6.0.1;
-						DevelopmentTeam = 9B5WD74GWJ;
+						DevelopmentTeam = 7MA98J2NRQ;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -3247,7 +3283,7 @@
 					};
 					EAB0AB3F19ED356A00764C31 = {
 						CreatedOnToolsVersion = 6.0.1;
-						DevelopmentTeam = 9B5WD74GWJ;
+						DevelopmentTeam = 7MA98J2NRQ;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -3458,6 +3494,7 @@
 				1487F249177C35AA004A1A5A /* NonSecureConnectionIcon@2x.png in Resources */,
 				1487F24A177C35AA004A1A5A /* ReconnectIcon.png in Resources */,
 				1487F24B177C35AA004A1A5A /* ReconnectIcon@2x.png in Resources */,
+				9C16AEA81B4A960200B068A3 /* ImportContactsSourceViewController.xib in Resources */,
 				1487F24C177C35AA004A1A5A /* RevealPasswordIcon.png in Resources */,
 				1487F24D177C35AA004A1A5A /* RevealPasswordIcon@2x.png in Resources */,
 				4030D8E81A161FC900DB0871 /* WhatsappShareiphone@3x.png in Resources */,
@@ -3543,6 +3580,7 @@
 				1487F28A177C35AA004A1A5A /* popover_backgroud.png in Resources */,
 				1487F28B177C35AA004A1A5A /* ASMoveFile.png in Resources */,
 				40AB1F6B1A123D1B003E7397 /* TABShares@3x.png in Resources */,
+				9CCC9A071B4B53C9005383B8 /* ImportContactsDstViewController.xib in Resources */,
 				1487F28C177C35AA004A1A5A /* ASMoveFile@2x.png in Resources */,
 				400560751A03B1190030D502 /* MainAppIcon_40-40@2x.png in Resources */,
 				1487F28D177C35AA004A1A5A /* ASOpenWith.png in Resources */,
@@ -3902,6 +3940,7 @@
 				59C71D141A9216AE00F66166 /* ReaderContentPage.m in Sources */,
 				59AF279E19920A1100359151 /* CheckHasCookiesSupport.m in Sources */,
 				14987092187D6702000D9C49 /* CWStatusBarNotification.m in Sources */,
+				9CCC9A061B4B53C9005383B8 /* ImportContactsDstViewController.m in Sources */,
 				59A9A72A196E8E3C0042FEAC /* UtilsCookies.m in Sources */,
 				59C71D1B1A9216AE00F66166 /* ReaderThumbCache.m in Sources */,
 				148DD6971778663100FB9977 /* OpenWith.m in Sources */,
@@ -3938,6 +3977,7 @@
 				59D774CE1910EE0F004322BA /* UtilsTableView.m in Sources */,
 				148DD6EA17786A1400FB9977 /* WebViewController.m in Sources */,
 				EABF69151891379C00A2217C /* SWCellScrollView.m in Sources */,
+				9C16AEA91B4A960200B068A3 /* ImportContactsSourceViewController.m in Sources */,
 				EABF69141891379C00A2217C /* NSMutableArray+SWUtilityButtons.m in Sources */,
 				EA68968F17F599060033B3C1 /* KKPasscodeLock.m in Sources */,
 				148DD6F617786BDA00FB9977 /* UIImage+Alpha.m in Sources */,
